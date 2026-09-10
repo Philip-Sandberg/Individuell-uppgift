@@ -18,3 +18,22 @@ string[] instructions = ["Välkommen till inköpslistan",
 "* Utöka inköpslistan genom att skriva vara och pris",
 "* Ta bort en vara från listan genom att skriva siffran framför"];
 Console.WriteLine(string.Join("\n", instructions));
+
+List<string> products = [];
+List<int> prices = [];
+int price;
+
+while (true)
+{
+    Console.WriteLine("Vilken vara vill du lägga till i listan?");
+    string product = Console.ReadLine()!;
+    Console.WriteLine("Vad är priset på varan?");
+    if(int.TryParse(Console.ReadLine(), out price))
+    {
+        products.Add(product);
+        prices.Add(price);
+    } else
+    {
+        Console.WriteLine("Ogiltigt pris, försök igen");
+    }
+}
