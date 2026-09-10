@@ -14,6 +14,8 @@ Ett nummer: varan på den positionen tas bort ur listan (både namn och pris).
 Om användaren anger ett nummer som inte finns i listan ska programmet säga till i stället för att
 krascha.
 */
+using System.Diagnostics.CodeAnalysis;
+
 string[] instructions = ["Välkommen till inköpslistan",
 "* Utöka inköpslistan genom att skriva en vara (Text) och pris (Heltal)",
 "* Ta bort en vara från listan genom att skriva siffran framför"];
@@ -24,8 +26,10 @@ List<int> prices = [];
 int price;
 int remove;
 
+
 while (true)
 {
+    int sum = 0;
     Console.WriteLine("Vilken vara vill du lägga till/ta bort från listan?");
     string product = Console.ReadLine()!;
     if (int.TryParse(product, out remove))
@@ -51,12 +55,17 @@ while (true)
         products.Add(product);
         prices.Add(price);
         for (int i = 0; i < products.Count; i++)
-    {
+        {
         Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
-    }
+        }
+        for (int i = 0; i < prices.Count; i++)
+        {
+        sum += prices[i];
+        }
     } else
     {
         Console.WriteLine("Ogiltigt pris, försök igen");
     }
     }
+    Console.WriteLine($"Totalt: {sum}kr");
 }
