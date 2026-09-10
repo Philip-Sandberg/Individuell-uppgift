@@ -22,13 +22,23 @@ Console.WriteLine(string.Join("\n", instructions));
 List<string> products = [];
 List<int> prices = [];
 int price;
-
+int remove;
 
 while (true)
 {
-    Console.WriteLine("Vilken vara vill du lägga till i listan?");
+    Console.WriteLine("Vilken vara vill du lägga till/ta bort från listan?");
     string product = Console.ReadLine()!;
-    Console.WriteLine("Vad är priset på varan?");
+    if (int.TryParse(product, out remove))
+    {
+        products.RemoveAt(remove - 1);
+        prices.RemoveAt(remove - 1);
+        for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
+    }
+    } else
+    {
+        Console.WriteLine("Vad är priset på varan?");
     if(int.TryParse(Console.ReadLine(), out price))
     {
         products.Add(product);
@@ -40,5 +50,6 @@ while (true)
     } else
     {
         Console.WriteLine("Ogiltigt pris, försök igen");
+    }
     }
 }
