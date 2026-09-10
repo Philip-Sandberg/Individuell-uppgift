@@ -23,6 +23,7 @@ List<string> products = [];
 List<int> prices = [];
 int price;
 
+
 while (true)
 {
     Console.WriteLine("Vilken vara vill du lägga till i listan?");
@@ -32,6 +33,10 @@ while (true)
     {
         products.Add(product);
         prices.Add(price);
+        for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
+    }
     } else
     {
         Console.WriteLine("Ogiltigt pris, försök igen");
