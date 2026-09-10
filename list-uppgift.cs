@@ -14,11 +14,11 @@ Ett nummer: varan på den positionen tas bort ur listan (både namn och pris).
 Om användaren anger ett nummer som inte finns i listan ska programmet säga till i stället för att
 krascha.
 */
-using System.Diagnostics.CodeAnalysis;
 
 string[] instructions = ["Välkommen till inköpslistan",
 "* Utöka inköpslistan genom att skriva en vara (Text) och pris (Heltal)",
-"* Ta bort en vara från listan genom att skriva siffran framför"];
+"* Ta bort en vara från listan genom att skriva den presenterade siffran framför sparad vara",
+"* För att avsluta programmet skriv: ="];
 Console.WriteLine(string.Join("\n", instructions));
 
 List<string> products = [];
@@ -52,11 +52,12 @@ while (true)
             {
                 Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
             }
-        } 
-        else
-        {
-            Console.WriteLine("Om du försöker ta bort en vara, skriv en siffra som finns i listan!\n");
-        }
+                Console.WriteLine($"Totalt: {sum}kr");
+            } 
+            else
+            {
+                Console.WriteLine("Om du försöker ta bort en vara, skriv en siffra som finns i listan!\n");
+            }
         
         } 
         else
