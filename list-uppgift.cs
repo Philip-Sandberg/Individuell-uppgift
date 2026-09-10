@@ -32,40 +32,55 @@ while (true)
     int sum = 0;
     Console.WriteLine("Vilken vara vill du lägga till/ta bort från listan?");
     string product = Console.ReadLine()!;
-    if (int.TryParse(product, out remove))
+    if (product == "=")
     {
-        if (remove <= products.Count && remove > 0)
+        break;
+    } 
+    else
+    {
+        if (int.TryParse(product, out remove))
         {
-        products.RemoveAt(remove - 1);
-        prices.RemoveAt(remove - 1);
-        for (int i = 0; i < products.Count; i++)
-        {
-        Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
-        }
-        } else
+            if (remove <= products.Count && remove > 0)
+            {
+            products.RemoveAt(remove - 1);
+            prices.RemoveAt(remove - 1);
+            for (int i = 0; i < prices.Count; i++)
+            {
+                sum += prices[i];
+            }
+            for (int i = 0; i < products.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
+            }
+        } 
+        else
         {
             Console.WriteLine("Om du försöker ta bort en vara, skriv en siffra som finns i listan!\n");
         }
         
-    } else
-    {
-        Console.WriteLine("Vad är priset på varan?");
-    if(int.TryParse(Console.ReadLine(), out price))
-    {
-        products.Add(product);
-        prices.Add(price);
-        for (int i = 0; i < products.Count; i++)
+        } 
+        else
         {
-        Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
+            Console.WriteLine("Vad är priset på varan?");
+            if(int.TryParse(Console.ReadLine(), out price))
+            {
+                products.Add(product);
+                prices.Add(price);
+                for (int i = 0; i < products.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
+                }
+                for (int i = 0; i < prices.Count; i++)
+                {
+                    sum += prices[i];
+                }
+                Console.WriteLine($"Totalt: {sum}kr");
+            } 
+            else
+            {
+                Console.WriteLine("Ogiltigt pris, försök igen");
+            }
         }
-        for (int i = 0; i < prices.Count; i++)
-        {
-        sum += prices[i];
-        }
-    } else
-    {
-        Console.WriteLine("Ogiltigt pris, försök igen");
+    
     }
-    }
-    Console.WriteLine($"Totalt: {sum}kr");
 }
