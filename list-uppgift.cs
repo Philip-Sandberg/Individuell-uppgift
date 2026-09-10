@@ -15,7 +15,7 @@ Om användaren anger ett nummer som inte finns i listan ska programmet säga til
 krascha.
 */
 string[] instructions = ["Välkommen till inköpslistan",
-"* Utöka inköpslistan genom att skriva vara och pris",
+"* Utöka inköpslistan genom att skriva en vara (Text) och pris (Heltal)",
 "* Ta bort en vara från listan genom att skriva siffran framför"];
 Console.WriteLine(string.Join("\n", instructions));
 
@@ -30,12 +30,19 @@ while (true)
     string product = Console.ReadLine()!;
     if (int.TryParse(product, out remove))
     {
+        if (remove <= products.Count && remove > 0)
+        {
         products.RemoveAt(remove - 1);
         prices.RemoveAt(remove - 1);
         for (int i = 0; i < products.Count; i++)
-    {
+        {
         Console.WriteLine($"{i + 1}. {products[i]} {prices[i]}kr");
-    }
+        }
+        } else
+        {
+            Console.WriteLine("Om du försöker ta bort en vara, skriv en siffra som finns i listan!\n");
+        }
+        
     } else
     {
         Console.WriteLine("Vad är priset på varan?");
